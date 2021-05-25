@@ -27,14 +27,14 @@ Show.create = (newShow, result) => {
       return;
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer });
-    result(null, { id: res.insertId, ...newCustomer });
+    console.log("created show: ", { id: res.insertId, ...newShow });
+    result(null, { id: res.insertId, ...newShow });
   });
 };
 
 Show.update = (name, show, result) => {
   sql.query(
-    "UPDATE customers SET name = ?, score = ? WHERE name = ?",
+    "UPDATE shows SET name = ?, score = ? WHERE name = ?",
     [show.name, show.score, name],
     (err, res) => {
       if (err) {
@@ -49,14 +49,14 @@ Show.update = (name, show, result) => {
         return;
       }
 
-      console.log("updated customer: ", { id: id, ...customer });
-      result(null, { id: id, ...customer });
+      console.log("updated show: ", { name: name, ...show });
+      result(null, { name: name, ...show });
     }
   );
 };
 
 Show.remove = (name, result) => {
-  sql.query("DELETE FROM customers WHERE name = ?", name, (err, res) => {
+  sql.query("DELETE FROM shows WHERE name = ?", name, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -69,7 +69,7 @@ Show.remove = (name, result) => {
       return;
     }
 
-    console.log("deleted customer with name: ", name);
+    console.log("deleted show with name: ", name);
     result(null, res);
   });
 };

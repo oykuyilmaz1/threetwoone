@@ -46,7 +46,7 @@ exports.updateShowController = (req, res) => {
     
       Show.update(
         req.body.name,
-        new Customer(req.body.show),
+        new Show(req.body),
         (err, data) => {
           if (err) {
             if (err.kind === "not_found") {
